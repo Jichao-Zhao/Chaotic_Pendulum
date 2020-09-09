@@ -49,6 +49,11 @@ void loop()
     Rad_CCW_Speed = (PulSum_CCW_t0 - PulSum_CCW_t0_T);
     Serial.println(Rad_CCW_Speed);
     }
+
+  // 角度计算程序
+  Rad = (PulSum_CW - PulSum_CCW)/6.944; 
+  Serial.print("Rad---");
+  Serial.println(Rad);
 }
 void Encode()
 {//当编码器码盘的OUTA脉冲信号下跳沿每中断一次，
