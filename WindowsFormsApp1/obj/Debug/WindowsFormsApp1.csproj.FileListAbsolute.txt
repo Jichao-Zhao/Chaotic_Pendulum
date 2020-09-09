@@ -31,3 +31,14 @@ C:\Users\Administrator\Documents\GitHub\5.C#_WinForm\WindowsFormsApp1\WindowsFor
 C:\Users\Administrator\Documents\GitHub\5.C#_WinForm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Documents\GitHub\5.C#_WinForm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Administrator\Documents\GitHub\5.C#_WinForm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ColorForm.resources
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+\\wsl\Ubuntu\home\jichao\gitRes\Chaotic_Pendulum\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
