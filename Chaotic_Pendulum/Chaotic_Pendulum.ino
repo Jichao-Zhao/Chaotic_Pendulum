@@ -18,8 +18,8 @@ float Rad_CCW_Speed = 0.000;    //定义逆时针角速度
 long PulSum_CCW_t0 = 0;        //定义记录逆时针方向 t0 时刻脉冲数变量
 long PulSum_CCW_t0_T = 0;      //定义记录逆时针方向 t0+T 时刻脉冲数变量
 
-
-int Array_CW[10];
+// 记录角度
+int Rad = 0;
 
 
 void setup()
@@ -35,25 +35,35 @@ void setup()
 
 void loop()
 {
-  PulSum_CW_t0   = PulSum_CW;  PulSum_CCW_t0   = PulSum_CCW;    //采集t0时刻的脉冲数
-  delay(T);                                                  //等待一个T时间
-  PulSum_CW_t0_T = PulSum_CW;  PulSum_CCW_t0_T = PulSum_CCW;    //采集t0+T时刻的脉冲数
-  delay(T);                                                  //等待一个T时间
-  if (PulSum_CW_t0_T - PulSum_CW_t0 != 0){
-    Serial.println(PulSum_CW_t0_T - PulSum_CW_t0);  //
-    Rad_CW_Speed = (PulSum_CW_t0_T - PulSum_CW_t0);   //
-    Serial.println(Rad_CW_Speed);               //打印出来速度
-    }  
-    
-  if (PulSum_CCW_t0_T - PulSum_CCW_t0 != 0){
-    Rad_CCW_Speed = (PulSum_CCW_t0 - PulSum_CCW_t0_T);
-    Serial.println(Rad_CCW_Speed);
-    }
-
   // 角度计算程序
   Rad = (PulSum_CW - PulSum_CCW)/6.944; 
-  Serial.print("Rad---");
-  Serial.println(Rad);
+  
+  PulSum_CW_t0   = PulSum_CW;  PulSum_CCW_t0   = PulSum_CCW;    //采集t0时刻的脉冲数
+  delay(T);                                                     //等待一个T时间
+  PulSum_CW_t0_T = PulSum_CW;  PulSum_CCW_t0_T = PulSum_CCW;    //采集t0+T时刻的脉冲数
+  delay(T);                                                     //等待一个T时间
+  
+  // 如果检测到正向角速度，那么就打印角速度，以及累计的角度
+  if (PulSum_CW_t0_T - PulSum_CW_t0 != 0){
+    Rad_CW_Speed = (PulSum_CW_t0_T - PulSum_CW_t0);   //
+    // 显示正向(CW)角速度 Rad_CW_Speed--->              //打印出来速度
+    Serial.print("AS:");                            //打印出来速度
+    Serial.print(Rad_CW_Speed);              
+    Serial.print("/A:");
+    Serial.println(Rad);
+    }  
+  
+  // 如果检测到反向角速度，那么就打印角速度，以及累计的角度
+  if (PulSum_CCW_t0_T - PulSum_CCW_t0 != 0){
+    Rad_CCW_Speed = (PulSum_CCW_t0 - PulSum_CCW_t0_T);
+    Serial.print("AS:");
+    Serial.print(Rad_CCW_Speed);
+    Serial.print("/A:");
+    Serial.println(Rad);
+    }
+
+
+
 }
 void Encode()
 {//当编码器码盘的OUTA脉冲信号下跳沿每中断一次，

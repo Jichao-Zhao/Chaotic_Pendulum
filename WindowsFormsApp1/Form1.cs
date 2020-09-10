@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
                 //toolStripComboBox_speed.Text = "采集频率(次/秒)";
             }
 
-            serialPort1.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            serialPort1.DataReceived += new SerialDataReceivedEventHandler(Port_DataReceived);
 
         }
 
@@ -44,7 +44,7 @@ namespace WindowsFormsApp1
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.LightGray;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.LightGray;
             //设置坐标轴名称
-            chart1.ChartAreas["ChartArea1"].AxisX.Title = "      ";
+            chart1.ChartAreas["ChartArea1"].AxisX.Title = "角度";
             chart1.ChartAreas["ChartArea1"].AxisY.Title = "角速度";
             //启用3D显示
             chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
@@ -63,8 +63,8 @@ namespace WindowsFormsApp1
             chartArea.AxisY.Maximum = 50d;
 
             //滚动条位于图表区内还是图表区外 是否使能滑动条
-            chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
-            chart1.ChartAreas[0].AxisX.ScrollBar.Enabled = true;
+            chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
+            chart1.ChartAreas[0].AxisX.ScrollBar.Enabled =false;
 
             chart1.ChartAreas[0].AxisX.ScaleView.Position = 0;      //指当前（最后边）显示的是第几个
 
@@ -72,17 +72,19 @@ namespace WindowsFormsApp1
             chart1.ChartAreas[0].AxisX.ScaleView.Size = 100;
         }
 
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)    //串口数据接收事件
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)    //串口数据接收事件
         {
             try
             {
                 string str = serialPort1.ReadLine();                    //读一行数据
+                string[] sArray1 = str.Split('/')[0].Split(':');
+                string[] sArray2 = str.Split('/')[1].Split(':');
+
                 textBox_rec.AppendText(str);
                 textBox_rec.AppendText("\r\n");                         //添加回车换行键
 
                 Series series = chart1.Series[0];
-                int j = 0;
-                series.Points.AddXY(j.ToString(), str);                 //添加一个点
+                series.Points.AddXY(sArray2[1], sArray1[1]);                 //添加一个点
 
                 //图像显示位置一直保持在X的值减去5的位置
                 chart1.ChartAreas[0].AxisX.ScaleView.Position = series.Points.Count - 90;
@@ -144,7 +146,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -184,7 +186,8 @@ namespace WindowsFormsApp1
             toolStripButton1.Enabled = true;                            //开始按钮可用
             toolStripButton3.Enabled = true;                            //清除按钮可用
         }
-
+        
+        // 清除按钮
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             serialPort1.Close();
