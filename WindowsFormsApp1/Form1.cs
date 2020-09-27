@@ -59,8 +59,8 @@ namespace WindowsFormsApp1
             ChartArea chartArea = chart1.ChartAreas[0];
             chartArea.AxisX.Minimum = 0;
             chartArea.AxisX.Maximum = 1000;
-            chartArea.AxisY.Minimum = -50d;
-            chartArea.AxisY.Maximum = 50d;
+            chartArea.AxisY.Minimum = -300d;
+            chartArea.AxisY.Maximum = 300d;
 
             //滚动条位于图表区内还是图表区外 是否使能滑动条
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;

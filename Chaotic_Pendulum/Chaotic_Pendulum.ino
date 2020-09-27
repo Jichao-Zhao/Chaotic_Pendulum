@@ -1,7 +1,7 @@
 #define PinA 2 //外部中断0
 #define PinZ 3 //外部中断1
-#define PinB 8 //编码器的OUT_B信号连接到数字端口8
-#define T 50    //定义采集时间周期单位ms
+#define PinB 9 //编码器的OUT_B信号连接到数字端口8
+#define T 30    //定义采集时间周期单位ms
 unsigned long time1 = 0; // 时间标记
 volatile long PulSum_CW = 0;   //定义长整型不可修改脉冲数
 volatile long PulSum_CCW = 0;   
@@ -19,7 +19,7 @@ long PulSum_CCW_t0 = 0;        //定义记录逆时针方向 t0 时刻脉冲数�
 long PulSum_CCW_t0_T = 0;      //定义记录逆时针方向 t0+T 时刻脉冲数变量
 
 // 记录角度
-int Rad = 0;
+int Rad = 180;
 
 
 void setup()
@@ -36,7 +36,10 @@ void setup()
 void loop()
 {
   // 角度计算程序
-  Rad = (PulSum_CW - PulSum_CCW)/6.944; 
+  Rad = int((PulSum_CW - PulSum_CCW)/6.944) % 360; 
+  if (Rad>=180) {
+    Rad = Rad - 360;
+  }
   
   PulSum_CW_t0   = PulSum_CW;  PulSum_CCW_t0   = PulSum_CCW;    //采集t0时刻的脉冲数
   delay(T);                                                     //等待一个T时间
@@ -47,18 +50,18 @@ void loop()
   if (PulSum_CW_t0_T - PulSum_CW_t0 != 0){
     Rad_CW_Speed = (PulSum_CW_t0_T - PulSum_CW_t0);   //
     // 显示正向(CW)角速度 Rad_CW_Speed--->              //打印出来速度
-    Serial.print("AS:");                            //打印出来速度
-    Serial.print(Rad_CW_Speed);              
-    Serial.print("/A:");
+    //Serial.print("AS:");                            //打印出来速度w
+    Serial.println(Rad_CW_Speed);              
+    //Serial.print("/A:");
     Serial.println(Rad);
     }  
   
   // 如果检测到反向角速度，那么就打印角速度，以及累计的角度
   if (PulSum_CCW_t0_T - PulSum_CCW_t0 != 0){
     Rad_CCW_Speed = (PulSum_CCW_t0 - PulSum_CCW_t0_T);
-    Serial.print("AS:");
-    Serial.print(Rad_CCW_Speed);
-    Serial.print("/A:");
+    //Serial.print("AS:");
+    Serial.println(Rad_CCW_Speed);
+    //Serial.print("/A:");
     Serial.println(Rad);
     }
 
