@@ -51,18 +51,22 @@ void loop()
     Rad_CW_Speed = (PulSum_CW_t0_T - PulSum_CW_t0);   //
     // 显示正向(CW)角速度 Rad_CW_Speed--->              //打印出来速度
     //Serial.print("AS:");                            //打印出来速度w
-    Serial.println(Rad_CW_Speed);              
+    Serial.print(Rad_CW_Speed);
+    Serial.print(":");            
     //Serial.print("/A:");
-    Serial.println(Rad);
+    Serial.print(Rad);
+    Serial.print("\n");
     }  
   
   // 如果检测到反向角速度，那么就打印角速度，以及累计的角度
   if (PulSum_CCW_t0_T - PulSum_CCW_t0 != 0){
     Rad_CCW_Speed = (PulSum_CCW_t0 - PulSum_CCW_t0_T);
     //Serial.print("AS:");
-    Serial.println(Rad_CCW_Speed);
+    Serial.print(Rad_CCW_Speed);
+    Serial.print(":");            
     //Serial.print("/A:");
-    Serial.println(Rad);
+    Serial.print(Rad);
+    Serial.print("\n");
     }
 
 

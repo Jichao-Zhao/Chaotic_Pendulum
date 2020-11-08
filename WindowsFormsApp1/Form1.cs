@@ -59,8 +59,8 @@ namespace WindowsFormsApp1
             ChartArea chartArea = chart1.ChartAreas[0];
             chartArea.AxisX.Minimum = 0;
             chartArea.AxisX.Maximum = 1000;
-            chartArea.AxisY.Minimum = -300d;
-            chartArea.AxisY.Maximum = 300d;
+            chartArea.AxisY.Minimum = -200d;
+            chartArea.AxisY.Maximum = 200d;
 
             //滚动条位于图表区内还是图表区外 是否使能滑动条
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
@@ -77,14 +77,14 @@ namespace WindowsFormsApp1
             try
             {
                 string str = serialPort1.ReadLine();                    //读一行数据
-                string[] sArray1 = str.Split('/')[0].Split(':');
-                string[] sArray2 = str.Split('/')[1].Split(':');
+                string sArray1 = str.Split(':')[0];
+                string sArray2 = str.Split(':')[1];
 
                 textBox_rec.AppendText(str);
                 textBox_rec.AppendText("\r\n");                         //添加回车换行键
 
                 Series series = chart1.Series[0];
-                series.Points.AddXY(sArray2[1], sArray1[1]);                 //添加一个点
+                series.Points.AddXY(sArray2, sArray1);                 //添加一个点
 
                 //图像显示位置一直保持在X的值减去5的位置
                 chart1.ChartAreas[0].AxisX.ScaleView.Position = series.Points.Count - 90;
